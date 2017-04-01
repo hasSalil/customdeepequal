@@ -13,6 +13,11 @@ type CustomDeepEquals struct {
 	CustomEqualityCheckers map[reflect.Type]func(a, b unsafe.Pointer) bool
 }
 
+// NewCustomDeepEquals creates an new CustomDeepEquals
+func NewCustomDeepEquals() CustomDeepEquals {
+	return CustomDeepEquals{make(map[reflect.Type]func(a unsafe.Pointer, b unsafe.Pointer) bool)}
+}
+
 // RegisterEquivalenceForType registers the equals function for the given type
 func (c *CustomDeepEquals) RegisterEquivalenceForType(ty reflect.Type, equals func(a, b unsafe.Pointer) bool) {
 	c.CustomEqualityCheckers[ty] = equals

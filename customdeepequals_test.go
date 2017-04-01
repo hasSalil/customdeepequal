@@ -21,7 +21,7 @@ type dtype struct {
 }
 
 func TestAll(t *testing.T) {
-	customDeep := CustomDeepEquals{make(map[reflect.Type]func(a unsafe.Pointer, b unsafe.Pointer) bool)}
+	customDeep := NewCustomDeepEquals()
 	now := time.Now()
 	customDeep.RegisterEquivalenceForType(reflect.TypeOf(now), func(a, b unsafe.Pointer) bool {
 		// Ugly code everyone will be forced to write
