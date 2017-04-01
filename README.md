@@ -1,7 +1,12 @@
 # A Customizable DeepEqual implementation for golang
 A re-implementation of reflect.DeepEqual that allows registering of custom deep equal function for specified types. The custom deep equals work recursively when comparing structs
 
-## Sample Usage:
+
+## Caution
+This library's DeepEqual method is reflection-based, and not efficient. It is therefore not suitable for use in production, and is intended for aid in unit testing and debugging.
+
+
+## Sample Usage
 ```
 customDeep := NewCustomDeepEquals()
 customDeep.RegisterEquivalenceForType(reflect.TypeOf(time.Now()), func(a, b unsafe.Pointer) bool {
